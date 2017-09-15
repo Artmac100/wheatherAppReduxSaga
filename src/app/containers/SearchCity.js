@@ -11,11 +11,9 @@ class SearchCity extends React.Component {
     this.state = {
       inputState: ""
     }
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.submitLocation = this.submitLocation.bind(this);
   }
 
-  submitLocation(e) {
+  submitLocation = (e) => {
     e.preventDefault();
     this.props.requestWeather(this.state.inputState)
     if(Object.keys(this.props.wheather.data)) {
@@ -27,11 +25,12 @@ class SearchCity extends React.Component {
     if(this.state.inputState) localStorage.setItem('city', this.state.inputState);
   }
 
-  handleInputChange(e) {
+  handleInputChange = (e) => {
     this.setState({ inputState: e.target.value });
   }
 
   render() {
+    const { wheather } = this.props;
     return (
       <div className="form-state">
         <h4>Show me the weather in city or place:</h4>
@@ -39,14 +38,14 @@ class SearchCity extends React.Component {
           <input type="text" onChange={ this.handleInputChange } />
           <button>FIND</button>
         </form>
-        <p>{this.props.wheather.err}</p>
+        <p>{ wheather.err }</p>
       </div>
     );
   }
 }
 
 
-const mapStateToProps = state => ({ wheather: state.wheather });
+const mapStateToProps = ({ wheather }) => ({ wheather });
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ requestWeather, cityState }, dispatch);

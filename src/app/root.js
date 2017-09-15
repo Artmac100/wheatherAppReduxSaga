@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import {AppContainer} from 'react-hot-loader';
+import { AppContainer } from 'react-hot-loader';
 
 import App from './app';
 
@@ -21,6 +21,6 @@ const render = (Component) => {
 
 render(App);
 
-if(module.hot) {
+if (module.hot) {
 	module.hot.accept('./app', () => render(App));
 }

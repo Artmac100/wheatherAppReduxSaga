@@ -1,13 +1,9 @@
-import { call, put, takeEvery,takeLatest, all, fork } from 'redux-saga/effects';
-import axios from 'axios';
-
+import { all, fork } from 'redux-saga/effects';
 
 import getWeatherWatcher from './weatherSaga';
 
-
-
-export default function* sagaRoot() {
-	yield all([
-		fork(getWeatherWatcher)
-	])
+function* sagaRoot() {
+  yield all([fork(getWeatherWatcher)]);
 }
+
+export default sagaRoot;

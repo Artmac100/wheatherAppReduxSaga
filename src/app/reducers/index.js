@@ -4,8 +4,8 @@ import wheatherReducer from './wheatherReducer';
 import cityRenderReducer from './cityRenderReducer';
 
 const reducer = combineReducers({
-	wheather: wheatherReducer,
-	cityState: cityRenderReducer
+  wheather: wheatherReducer,
+  cityState: cityRenderReducer,
 });
 
 export default reducer;

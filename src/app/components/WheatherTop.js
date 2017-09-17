@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { toHgmm } from '../utils/converter';
 import { toDatestring, toTimeSting } from '../utils/dateConverter';
 import { wheatherIcon } from '../utils/whetherTimeUtil';
@@ -6,34 +8,34 @@ import { wheatherIcon } from '../utils/whetherTimeUtil';
 class WheatherTop extends React.Component {
 
   render() {
-    const wheatherItem = this.props.wheather.list[this.props.num];
+    const { wheather } = this.props;
     return (
       <div className="wheather-contatiner">
         <div className="datetime">
-          { toDatestring(wheatherItem.dt_txt) } { toTimeSting(wheatherItem.dt_txt) }
+          { toDatestring(wheather.dt_txt) } { toTimeSting(wheather.dt_txt) }
         </div>
         <div className="wheather-props">
           <div className="main-wheather-prop">
             <div className="cloudness">
-              <div className="cloudness-icon">{wheatherIcon(wheatherItem.weather[0].id, wheatherItem.dt_txt)}</div>
-              <div className="cloudness-text">{wheatherItem.weather[0].description}</div>
+              <div className="cloudness-icon">{wheatherIcon(wheather.weather[0].id, wheather.dt_txt)}</div>
+              <div className="cloudness-text">{wheather.weather[0].description}</div>
             </div>
-            <div className="temprature">{wheatherItem.main.temp.toFixed()}<span className="temprature-unit">°C</span></div>
+            <div className="temprature">{wheather.main.temp.toFixed()}<span className="temprature-unit">°C</span></div>
           </div>
           <div className="extra-wheather-props">
             <div className="wheather-prop">
               <span className="wheather-prop-icon"><i className="icon-wind" /></span>
-              {wheatherItem.wind.speed}
+              {wheather.wind.speed}
               <span className="wheather-prop-unit"> m/s</span>
             </div>
             <div className="wheather-prop">
               <span className="wheather-prop-icon"><i className="fa fa-compass" aria-hidden="true" /></span>
-              {toHgmm(wheatherItem.main.pressure)}
+              {toHgmm(wheather.main.pressure)}
               <span className="wheather-prop-unit"> mm. mercury</span>
             </div>
             <div className="wheather-prop">
               <span className="wheather-prop-icon"><i className="fa fa-tint" aria-hidden="true" /></span>
-              {wheatherItem.main.humidity}
+              {wheather.main.humidity}
               <span className="wheather-prop-unit"> %</span>
             </div>
           </div>
@@ -43,5 +45,16 @@ class WheatherTop extends React.Component {
   }
 }
 
+WheatherTop.propTypes = {
+  wheather: PropTypes.shape({
+    dt: PropTypes.number,
+    main: PropTypes.object,
+    wheather: PropTypes.array,
+    clouds: PropTypes.object,
+    wind: PropTypes.object,
+    sys: PropTypes.object,
+    dt_txt: PropTypes.string,
+  }).isRequired,
+};
 
 export default WheatherTop;

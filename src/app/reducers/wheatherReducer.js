@@ -1,3 +1,4 @@
+import { createReducer } from 'redux-create-reducer';
 import { REQUEST_WEATHER, RECEIVE_WEATHER, REJECT_WEATHER } from '../actions/getWheather';
 
 const initialState = {
@@ -6,17 +7,16 @@ const initialState = {
   err: '',
 };
 
-function wheatherReducer(state = initialState, { type, data, err }) {
-  switch (type) {
-    case REQUEST_WEATHER:
-      return { ...state, pending: true, err: '', data: {} };
-    case RECEIVE_WEATHER:
-      return { ...state, data, pending: false };
-    case REJECT_WEATHER:
-      return { ...state, err, pending: false };
-    default:
-      return state;
-  }
-}
+const wheatherReducer = createReducer(initialState, {
+  [REQUEST_WEATHER](state) {
+    return { ...state, pending: true, err: '', data: {} };
+  },
+  [RECEIVE_WEATHER](state, { data }) {
+    return { ...state, data, pending: false };
+  },
+  [REJECT_WEATHER](state, { err }) {
+    return { ...state, err, pending: false };
+  },
+});
 
 export default wheatherReducer;

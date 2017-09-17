@@ -56,7 +56,13 @@ const mapDispatchToProps = dispatch =>
 bindActionCreators({ requestWeather, cityState }, dispatch);
 
 SearchCity.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    cod: PropTypes.string,
+    message: PropTypes.number,
+    cnt: PropTypes.number,
+    list: PropTypes.array,
+    city: PropTypes.object,
+  }).isRequired,
   err: PropTypes.string.isRequired,
   cityState: PropTypes.func.isRequired,
   requestWeather: PropTypes.func.isRequired,

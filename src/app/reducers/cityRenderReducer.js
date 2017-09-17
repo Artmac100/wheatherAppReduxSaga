@@ -1,14 +1,14 @@
+import { createReducer } from 'redux-create-reducer';
 import { CITY_STATE, FORM_STATE } from '../actions/cityState';
 
-function cityRenderReducer(state = false, action) {
-  switch (action.type) {
-    case CITY_STATE:
-      return action.cityRender;
-    case FORM_STATE:
-      return action.cityRender;
-    default:
-      return state;
-  }
-}
+const initialState = false;
+const cityRenderReducer = createReducer(initialState, {
+  [CITY_STATE](state, action) {
+    return action.cityRender;
+  },
+  [FORM_STATE](state, action) {
+    return action.cityRender;
+  },
+});
 
 export default cityRenderReducer;

@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "create-redux-reducer": "^1.1.0",
     "font-awesome": "^4.7.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
@@ -46,6 +45,7 @@
     "react-redux": "^5.0.5",
     "react-slick": "^0.15.4",
     "redux": "^3.7.1",
+    "redux-create-reducer": "^1.1.1",
     "redux-saga": "^0.15.6"
   }
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Wheather from './containers/Wheather';
+import View from './containers/View';
 
 function App() {
-  return <Wheather />;
+  return <View />;
 }
 
 export default App;

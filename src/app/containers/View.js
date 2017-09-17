@@ -17,13 +17,17 @@ import { formState } from '../actions/cityState';
 class View extends React.Component {
   componentDidMount() {
     if (localStorage.getItem('city')) {
-      this.props.requestWeather(localStorage.getItem('city'));
+      const queryId = `id=${localStorage.getItem('city')}`;
+      this.props.requestWeather(queryId);
+    } else {
+      window.navigator.geolocation.getCurrentPosition((pos) => {
+        const queryNav = `lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+        this.props.requestWeather(queryNav);
+      });
     }
   }
 
-  changeCity = () => {
-    this.props.formState();
-  }
+  changeCity = () => this.props.formState();
 
   render() {
     const { data, pending, cityState, wheatherTime } = this.props;

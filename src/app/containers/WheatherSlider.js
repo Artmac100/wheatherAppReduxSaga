@@ -23,9 +23,7 @@ class WheatherSlider extends React.Component {
     };
   }
 
-  setWheatherTime = (index) => {
-    this.props.changeWheatherTime(index);
-  }
+  setWheatherTime = index => this.props.changeWheatherTime(index);
 
   wheather = (item, index) => (
     <div className="weather-item" key={item.dt} onClick={() => this.setWheatherTime(index)}>

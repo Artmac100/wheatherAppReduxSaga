@@ -5,13 +5,14 @@ import Api from '../api/config';
 // import '../api/config';
 import { REQUEST_WEATHER, receiveWheather, rejectWheather } from '../actions/getWheather';
 
-
+const save = state => window.localStorage.setItem('city', JSON.stringify(state));
 // console.log(ApiConfig);
 function* getWheatherData({ location }) {
   try {
-    const uri = `${Api.baseUrl}forecast?q=${location}&units=metric&appid=${Api.key}`;
+    const uri = `${Api.baseUrl}forecast?${location}&units=metric&appid=${Api.key}`;
     const data = yield call(axios.get, uri);
     yield put(receiveWheather(data.data));
+    yield call(save, data.data.city.id);
   } catch (err) {
     yield put(rejectWheather('not found!'));
   }

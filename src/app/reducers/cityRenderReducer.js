@@ -4,10 +4,10 @@ import { CITY_STATE, FORM_STATE } from '../actions/cityState';
 const initialState = false;
 const cityRenderReducer = createReducer(initialState, {
   [CITY_STATE](state, action) {
-    return action.cityRender;
+    return false;
   },
   [FORM_STATE](state, action) {
-    return action.cityRender;
+    return true;
   },
 });
 

@@ -13,23 +13,17 @@ class SearchCity extends React.Component {
       inputState: '',
     };
   }
-
-  componentWillUnmount() {
-    if (this.state.inputState) localStorage.setItem('city', this.state.inputState);
-  }
-
   submitLocation = (e) => {
     e.preventDefault();
-    this.props.requestWeather(this.state.inputState);
+    const query = 'q=' + this.state.inputState;
+    this.props.requestWeather(query);
     if (Object.keys(this.props.data)) {
       this.props.cityState();
     }
   }
 
 
-  handleInputChange = (e) => {
-    this.setState({ inputState: e.target.value });
-  }
+  handleInputChange = e => this.setState({ inputState: e.target.value });
 
   render() {
     const { err } = this.props;

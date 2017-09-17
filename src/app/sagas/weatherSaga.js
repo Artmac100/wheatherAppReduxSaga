@@ -2,11 +2,10 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import Api from '../api/config';
 
-// import '../api/config';
 import { REQUEST_WEATHER, receiveWheather, rejectWheather } from '../actions/getWheather';
 
 const save = state => window.localStorage.setItem('city', JSON.stringify(state));
-// console.log(ApiConfig);
+
 function* getWheatherData({ location }) {
   try {
     const uri = `${Api.baseUrl}forecast?${location}&units=metric&appid=${Api.key}`;

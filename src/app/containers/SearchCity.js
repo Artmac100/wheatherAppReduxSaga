@@ -18,7 +18,7 @@ class SearchCity extends React.Component {
     if (this.state.inputState.length > 2) {
       const query = 'q=' + this.state.inputState;
       this.props.requestWeather(query);
-      if (Object.keys(this.props.data)) {
+      if (this.props.fullfilled) {
         this.props.cityState();
       }
     }
@@ -44,7 +44,7 @@ class SearchCity extends React.Component {
 
 
 const mapStateToProps = ({ wheather }) => ({
-  data: wheather.data,
+  fullfilled: wheather.fullfilled,
   err: wheather.err,
 });
 
@@ -52,13 +52,7 @@ const mapDispatchToProps = dispatch =>
 bindActionCreators({ requestWeather, cityState }, dispatch);
 
 SearchCity.propTypes = {
-  data: PropTypes.shape({
-    cod: PropTypes.string,
-    message: PropTypes.number,
-    cnt: PropTypes.number,
-    list: PropTypes.array,
-    city: PropTypes.object,
-  }).isRequired,
+  fullfilled: PropTypes.bool.isRequired,
   err: PropTypes.string.isRequired,
   cityState: PropTypes.func.isRequired,
   requestWeather: PropTypes.func.isRequired,

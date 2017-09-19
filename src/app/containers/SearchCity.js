@@ -15,10 +15,12 @@ class SearchCity extends React.Component {
   }
   submitLocation = (e) => {
     e.preventDefault();
-    const query = 'q=' + this.state.inputState;
-    this.props.requestWeather(query);
-    if (Object.keys(this.props.data)) {
-      this.props.cityState();
+    if (this.state.inputState.length > 2) {
+      const query = 'q=' + this.state.inputState;
+      this.props.requestWeather(query);
+      if (Object.keys(this.props.data)) {
+        this.props.cityState();
+      }
     }
   }
 

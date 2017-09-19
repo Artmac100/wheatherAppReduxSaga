@@ -1,7 +1,8 @@
+import * as constants from '../constants';
+
 export const toDatestring = (intTime) => {
   const d = new Date(intTime);
-  const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  return `${d.getDate()} ${month[d.getMonth()]} ${d.getFullYear()}`;
+  return `${d.getDate()} ${constants.months[d.getMonth()]} ${d.getFullYear()}`;
 };
 
 export const toTimeSting = (intTime) => {
@@ -15,14 +16,5 @@ export const toTimeSting = (intTime) => {
 
 export const toDayAndDate = (intTime) => {
   const d = new Date(intTime);
-  const weekday = [
-    'SUN',
-    'MON',
-    'TUE',
-    'WED',
-    'THU',
-    'FRI',
-    'SAT',
-  ];
-  return `${weekday[d.getDay()]} ${d.getDate()}`;
+  return `${constants.weekdays[d.getDay()]} ${d.getDate()}`;
 };

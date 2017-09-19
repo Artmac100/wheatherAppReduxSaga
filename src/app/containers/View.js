@@ -16,15 +16,7 @@ import { formState } from '../actions/cityState';
 
 class View extends React.Component {
   componentDidMount() {
-    if (localStorage.getItem('city')) {
-      const queryId = `id=${localStorage.getItem('city')}`;
-      this.props.requestWeather(queryId);
-    } else {
-      window.navigator.geolocation.getCurrentPosition((pos) => {
-        const queryNav = `lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
-        this.props.requestWeather(queryNav);
-      });
-    }
+    this.props.requestWeather();
   }
 
   changeCity = () => this.props.formState();
@@ -35,7 +27,11 @@ class View extends React.Component {
     return (
       Object.keys(data).length && !cityState ?
         <div>
-          <CityTitle city={data.city} changeCity={this.changeCity} />
+          <CityTitle
+            location={data.city.name}
+            country={data.city.country}
+            changeCity={this.changeCity}
+          />
           <WheatherTop wheather={data.list[wheatherTime.index]} />
           <WheatherSlider list={data.list} />
         </div>
@@ -46,7 +42,7 @@ class View extends React.Component {
 
 }
 
-const mapStateToProps = ({ wheather, cityState, wheatherTime }) => ({ 
+const mapStateToProps = ({ wheather, cityState, wheatherTime }) => ({
   data: wheather.data,
   pending: wheather.pending,
   cityState,

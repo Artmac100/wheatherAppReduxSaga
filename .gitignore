@@ -4,4 +4,4 @@
 
 yarn.lock
 
-/src/app/api/
+/src/app/api/config.js

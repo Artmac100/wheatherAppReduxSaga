@@ -29,7 +29,7 @@ class WheatherSlider extends React.Component {
     <div className="weather-item" key={item.dt} onClick={() => this.setWheatherTime(index)}>
       <time className="datetime">{ toDayAndDate(item.dt_txt) }</time>
       <time className="datetime">{ toTimeSting(item.dt_txt) }</time>
-      <div className="cloudness-icon">{wheatherIcon(item.weather[0].id, item.dt_txt)}</div>
+      <div className="cloudness-icon"><i className={wheatherIcon(item.weather[0].id, item.dt_txt)} /></div>
       <div className="temprature">{item.main.temp.toFixed()}<span className="temprature-unit">°C</span></div>
       <div className="cloudness-text">{item.weather[0].description}</div>
     </div>

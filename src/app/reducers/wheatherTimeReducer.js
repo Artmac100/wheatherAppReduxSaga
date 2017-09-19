@@ -6,9 +6,7 @@ const initialState = {
 };
 
 const wheatherTimeReducer = createReducer(initialState, {
-  [WHEATHER_TIME](state, { index }) {
-    return { ...state, index };
-  },
+  [WHEATHER_TIME]: (state, { index }) => ({ ...state, index }),
 });
 
 export default wheatherTimeReducer;

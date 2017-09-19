@@ -8,15 +8,9 @@ const initialState = {
 };
 
 const wheatherReducer = createReducer(initialState, {
-  [REQUEST_WEATHER](state) {
-    return { ...state, pending: true, err: '', data: {} };
-  },
-  [RECEIVE_WEATHER](state, { data }) {
-    return { ...state, data, pending: false };
-  },
-  [REJECT_WEATHER](state, { err }) {
-    return { ...state, err, pending: false };
-  },
+  [REQUEST_WEATHER]: state => ({ ...state, pending: true, err: '', data: {} }),
+  [RECEIVE_WEATHER]: (state, { data }) => ({ ...state, data, pending: false }),
+  [REJECT_WEATHER]: (state, { err }) => ({ ...state, err, pending: false }),
 });
 
 export default wheatherReducer;

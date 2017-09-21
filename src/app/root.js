@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 
 import App from './app';
-
 import store from './store';
 
+import '../styles/main.scss';
 
 const render = (Component) => {
   ReactDOM.render(

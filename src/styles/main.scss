@@ -16,8 +16,8 @@ body {
 }
 
 .wheather-props {
-	padding: 20px;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 }
 
@@ -42,7 +42,10 @@ body {
 	}
 }
 
-
+.main-wheather-prop,
+.extra-wheather-props {
+	padding: 20px;
+}
 .main-wheather-prop {
 	padding-right: 50px;
 	text-align: center;

@@ -2,7 +2,6 @@ const path = require('path');
 const WebpackHtmlPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Copy = require('copy-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -25,7 +24,7 @@ module.exports = {
         exclude: '/node_modules/',
         use: [
           'babel-loader',
-        ]
+        ],
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
@@ -57,6 +56,5 @@ module.exports = {
       template: './src/index.html',
     }),
     new ExtractTextPlugin('styles.css'),
-    new UglifyJSPlugin(),
-  ]
-}
+  ],
+};

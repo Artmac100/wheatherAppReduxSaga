@@ -13,6 +13,14 @@ class SearchCity extends React.Component {
       inputState: '',
     };
   }
+
+  static propTypes = () => ({
+    fullfilled: PropTypes.bool.isRequired,
+    err: PropTypes.string.isRequired,
+    cityState: PropTypes.func.isRequired,
+    requestWeather: PropTypes.func.isRequired,
+  })
+
   submitLocation = (e) => {
     e.preventDefault();
     if (this.state.inputState.length > 2) {
@@ -51,11 +59,6 @@ const mapStateToProps = ({ wheather }) => ({
 const mapDispatchToProps = dispatch =>
 bindActionCreators({ requestWeather, cityState }, dispatch);
 
-SearchCity.propTypes = {
-  fullfilled: PropTypes.bool.isRequired,
-  err: PropTypes.string.isRequired,
-  cityState: PropTypes.func.isRequired,
-  requestWeather: PropTypes.func.isRequired,
-};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchCity);

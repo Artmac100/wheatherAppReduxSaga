@@ -1,28 +1,25 @@
 import Koa from 'koa';
-import Router from 'koa-router';
-import logger from 'koa-logger';
-import bodyParser from 'koa-parser';
-import passport from 'koa-passport';
 
-import config from './config/index';
+import logger from 'koa-logger';
+import cors from 'koa2-cors';
+import bodyParser from 'koa-parser';
+import mongoose from 'mongoose';
+
+import config from './config/index.mjs';
+import router from './router.mjs';
 
 const app = new Koa();
-const router = new Router();
+
+mongoose.connect(config.database, { useMongoClient: true }, () => {
+  console.log('db connected');
+});
 
 app
-  .use(logger('hi'))
+  .use(logger())
+  .use(cors())
   .use(bodyParser())
-  .use(passport.initialize())
   .use(router.routes());
 
-
-router.get('/', (ctx) => {
-  ctx.body = 'Hello World';
-});
-
-router.post('/test', (ctx) => {
-  ctx.body = { data: ctx.request.body };
-});
 
 app
   .listen(config.port, () =>

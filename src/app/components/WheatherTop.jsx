@@ -15,10 +15,14 @@ const WheatherTop = (props) => {
       <div className="wheather-props">
         <div className="main-wheather-prop">
           <div className="cloudness">
-            <div className="cloudness-icon"><i className={wheatherIcon(weather[0].id, dt_txt)} /></div>
+            <div className="cloudness-icon">
+              <i className={wheatherIcon(weather[0].id, dt_txt)} />
+            </div>
             <div className="cloudness-text">{weather[0].description}</div>
           </div>
-          <div className="temprature">{main.temp.toFixed()}<span className="temprature-unit">°C</span></div>
+          <div className="temprature">
+            {main.temp.toFixed()}<span className="temprature-unit">°C</span>
+          </div>
         </div>
         <div className="extra-wheather-props">
           <div className="wheather-prop">
@@ -27,12 +31,16 @@ const WheatherTop = (props) => {
             <span className="wheather-prop-unit"> m/s</span>
           </div>
           <div className="wheather-prop">
-            <span className="wheather-prop-icon"><i className="fa fa-compass" aria-hidden="true" /></span>
+            <span className="wheather-prop-icon">
+              <i className="fa fa-compass" aria-hidden="true" />
+            </span>
             {toHgmm(main.pressure)}
             <span className="wheather-prop-unit"> mm. mercury</span>
           </div>
           <div className="wheather-prop">
-            <span className="wheather-prop-icon"><i className="fa fa-tint" aria-hidden="true" /></span>
+            <span className="wheather-prop-icon">
+              <i className="fa fa-tint" aria-hidden="true" />
+            </span>
             {main.humidity}
             <span className="wheather-prop-unit"> %</span>
           </div>

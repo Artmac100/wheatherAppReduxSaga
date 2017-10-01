@@ -1,14 +1,16 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import * as Api from '../api/Api';
+import { fetchWheather } from '../api/wheatherApi';
+import { saveToStorage } from '../api/storage';
+
 import { REQUEST_WEATHER, receiveWheather, rejectWheather } from '../actions/getWheather';
 
 
 function* getWheatherData({ location }) {
   try {
-    const data = yield call(Api.fetchWheather, location);
+    const data = yield call(fetchWheather, location);
     yield put(receiveWheather(data.data));
-    yield call(Api.save, data.data.city.id);
+    yield call(saveToStorage, 'city', data.data.city.id);
   } catch (err) {
     if (err.response) {
       yield put(rejectWheather(err.response.data.message));

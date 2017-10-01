@@ -1,9 +1,7 @@
 import React from 'react';
 
-import View from './containers/View';
+import Routers from './containers/Routers';
 
-function App() {
-  return <View />;
-}
+const App = () => <Routers />;
 
 export default App;

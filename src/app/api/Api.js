@@ -1,32 +1,27 @@
 import axios from 'axios';
+
 import config from './config';
+import history from '../history';
 
+export const signupPost = ({ username, email, password }) => (
+  axios.post(`${config.apiUrl}/signup`, { username, email, password })
+);
 
-const fetchData = (location) => {
-  const uri = `${config.baseUrl}forecast?${location}&units=metric&appid=${config.key}`;
-  return axios.get(uri);
-};
+export const loginPost = ({ username, password }) => (
+  axios.post(`${config.apiUrl}/login`, { username, password })
+);
 
-export const fetchWheather = (location) => {
-  if (!location) {
-    if (localStorage.getItem('city')) {
-      const storeLocation = `id=${localStorage.getItem('city')}`;
-      return fetchData(storeLocation);
-    }
-    const getPosition = (options) => {
-      return new Promise((resolve, reject) => {
-        window.navigator.geolocation.getCurrentPosition(resolve, reject, options);
-      });
+export const fetchUserData = () => {
+  if (window.localStorage.getItem('token')) {
+    const token = JSON.parse(window.localStorage.getItem('token'));
+    const opt = {
+      headers: {
+        'x-authorization-token': `bearer ${token}`,
+      },
     };
-
-    return getPosition()
-      .then((pos) => {
-        const position = `lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
-        return position;
-      })
-      .then(position => fetchWheather(position));
+    return axios.get(`${config.apiUrl}/getuserdata`, opt);
   }
-  return fetchData(location);
+  return false;
 };
-export const save = state => window.localStorage.setItem('city', JSON.stringify(state));
 
+export const redirect = route => history.push(route);

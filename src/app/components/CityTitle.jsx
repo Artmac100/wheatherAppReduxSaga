@@ -1,10 +1,11 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const CityTitle = ({ location, country, changeCity }) => (
   <div className="city-name">
-    {location}, {country}
-    <button className="change-btn" onClick={changeCity} >CHANGE</button>
+    <div>{location}, {country}</div>
+    <Button onClick={changeCity} >CHANGE</Button>
   </div>
 );
 

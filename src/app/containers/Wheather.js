@@ -14,12 +14,27 @@ import CityTitle from '../components/CityTitle';
 import { formState } from '../actions/cityState';
 
 
-class View extends React.Component {
+class Wheather extends React.Component {
   componentDidMount() {
     this.props.requestWeather();
   }
 
   changeCity = () => this.props.formState();
+
+  static propTypes = () => ({
+    data: PropTypes.shape({
+      cod: PropTypes.string,
+      message: PropTypes.number,
+      cnt: PropTypes.number,
+      list: PropTypes.array,
+      city: PropTypes.object,
+    }).isRequired,
+    wheatherTime: PropTypes.shape({ index: PropTypes.number.isRequired }).isRequired,
+    pending: PropTypes.bool.isRequired,
+    cityState: PropTypes.bool.isRequired,
+    formState: PropTypes.func.isRequired,
+    requestWeather: PropTypes.func.isRequired,
+  })
 
   render() {
     const { data, pending, cityState, wheatherTime } = this.props;
@@ -49,22 +64,9 @@ const mapStateToProps = ({ wheather, cityState, wheatherTime }) => ({
   wheatherTime,
 });
 
-View.propTypes = {
-  data: PropTypes.shape({
-    cod: PropTypes.string,
-    message: PropTypes.number,
-    cnt: PropTypes.number,
-    list: PropTypes.array,
-    city: PropTypes.object,
-  }).isRequired,
-  wheatherTime: PropTypes.shape({ index: PropTypes.number.isRequired }).isRequired,
-  pending: PropTypes.bool.isRequired,
-  cityState: PropTypes.bool.isRequired,
-  formState: PropTypes.func.isRequired,
-  requestWeather: PropTypes.func.isRequired,
-};
+
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ requestWeather, formState }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(View);
+export default connect(mapStateToProps, mapDispatchToProps)(Wheather);

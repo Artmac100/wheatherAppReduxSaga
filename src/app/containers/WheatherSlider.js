@@ -60,6 +60,11 @@ class WheatherSlider extends React.Component {
     };
   }
 
+  static propTypes = () => ({
+    list: PropTypes.arrayOf(PropTypes.object).isRequired,
+    changeWheatherTime: PropTypes.func.isRequired,
+  })
+
   setWheatherTime = index => this.props.changeWheatherTime(index);
 
   wheather = (item, index) => (
@@ -84,11 +89,6 @@ class WheatherSlider extends React.Component {
 }
 
 const mapStateToProps = () => ({});
-
-WheatherSlider.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.object).isRequired,
-  changeWheatherTime: PropTypes.func.isRequired,
-};
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({ changeWheatherTime }, dispatch);

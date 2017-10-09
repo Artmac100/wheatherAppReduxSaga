@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Field, reduxForm } from 'redux-form';
-import { Button } from 'semantic-ui-react';
+import { Button, Message } from 'semantic-ui-react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -12,10 +12,14 @@ class Login extends React.Component {
     this.props.requestLogin({ username, password});
   }
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, signup, login } = this.props;
     return (
       <form onSubmit={handleSubmit(this.submit)} className="login-form">
         <div>
+          {
+            signup.fullfilled && !login.fullfilled &&
+            <Message content={signup.data.message} info />
+          }
           <Field
             name="username"
             component={InputLogin}

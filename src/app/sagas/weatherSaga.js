@@ -20,7 +20,6 @@ function* getWheatherData({ location }) {
   }
 }
 
-
 function* getWeatherWatcher() {
   yield takeLatest(REQUEST_WEATHER, getWheatherData);
 }

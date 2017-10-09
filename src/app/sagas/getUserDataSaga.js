@@ -3,6 +3,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import { fetchUserData, redirect } from '../api/Api';
 import { REQUEST_USERDATA, respondUserdata, rejectUserdata } from '../actions/userDataActions';
 import { authentication } from '../actions/authAction';
+import { deleteFromStorage } from '../api/storage';
 import history from '../history';
 
 function* getUserData() {
@@ -18,6 +19,7 @@ function* getUserData() {
     }
   } catch (err) {
     yield put(rejectUserdata(err.response.data.err));
+    yield call(deleteFromStorage, 'token');
   }
 }
 

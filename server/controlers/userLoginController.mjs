@@ -9,7 +9,7 @@ const userLoginControler = async (ctx) => {
     .then((user) => {
       if (user.checkPassword(password)) {
         ctx.status = 200;
-        const token = jwt.sign({ _id: user._id }, config.secret);
+        const token = jwt.sign({ _id: user._id }, config.secret, { expiresIn: 30 });
         ctx.body = {
           authenticated: true,
           username: user.username,

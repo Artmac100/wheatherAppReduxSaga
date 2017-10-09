@@ -14,7 +14,7 @@ const userSignupControler = async (ctx) => {
       ctx.status = 200;
       ctx.body = {
         success: true,
-        data: newUser,
+        message: `You signed up as ${newUser.username} and now you sould to login`,
       };
     })
     .catch((err) => {

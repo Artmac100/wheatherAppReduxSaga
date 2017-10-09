@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "webpack-dev-server --progress  --history-api-fallback --hot",
     "build": "webpack --progress",
-    "server": "nodemon -r @std/esm ./server/main.mjs",
+    "server": "nodemon ./server/main.js --exec babel-node --presets env",
     "lint": "eslint src"
   },
   "devDependencies": {

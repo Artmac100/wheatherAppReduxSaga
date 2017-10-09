@@ -5,8 +5,8 @@ import cors from 'koa2-cors';
 import bodyParser from 'koa-parser';
 import mongoose from 'mongoose';
 
-import config from './config/index.mjs';
-import router from './router.mjs';
+import config from './config/index';
+import configurePublic from './controlers/index';
 
 const app = new Koa();
 
@@ -18,7 +18,7 @@ app
   .use(logger())
   .use(cors())
   .use(bodyParser())
-  .use(router.routes());
+  .use(configurePublic());
 
 
 app

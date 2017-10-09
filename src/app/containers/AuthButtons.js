@@ -13,7 +13,6 @@ class AuthButtons extends React.Component {
 
   logOutClick = () => {
     this.props.logingOut();
-    window.localStorage.removeItem('token');
   }
 
   render() {

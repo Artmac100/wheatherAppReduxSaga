@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 
 const CityTitle = ({ location, country, changeCity }) => (
   <div className="city-name">
-    <div>{location}, {country}</div>
-    <Button onClick={changeCity} >CHANGE</Button>
+    <div>
+      {location}, {country}
+    </div>
+    <Button onClick={changeCity}>CHANGE</Button>
   </div>
 );
 

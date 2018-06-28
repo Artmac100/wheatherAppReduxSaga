@@ -7,7 +7,7 @@ const fetchData = (location) => {
   return axios.get(uri);
 };
 
-export const fetchWheather = (location) => {
+const fetchWheather = (location) => {
   if (!location) {
     if (localStorage.getItem('city')) {
       const storeLocation = `id=${localStorage.getItem('city')}`;
@@ -28,3 +28,5 @@ export const fetchWheather = (location) => {
   }
   return fetchData(location);
 };
+
+export default fetchWheather;

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const wheatherIcon = (stateWheather, intTime) => {
   const d = new Date(intTime);
   switch (true) {

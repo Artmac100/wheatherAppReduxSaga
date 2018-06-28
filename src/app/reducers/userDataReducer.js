@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-create-reducer';
-import { REQUEST_USERDATA, RESPOND_USERDATA, REJECT_USERDATA } from '../actions/userDataActions';
+import { REQUEST_USERDATA, RESPOND_USERDATA, REJECT_USERDATA } from '../constants/actionTypes';
 
 const initialState = {
   pending: false,

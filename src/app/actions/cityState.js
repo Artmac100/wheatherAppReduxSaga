@@ -1,5 +1,4 @@
-export const CITY_STATE = 'CITY_STATE';
-export const FORM_STATE = 'FORM_STATE';
+import { CITY_STATE, FORM_STATE } from '../constants/actionTypes';
 
-export const cityState = () => ({ type: 'CITY_STATE' });
-export const formState = () => ({ type: 'FORM_STATE' });
+export const cityState = () => ({ type: CITY_STATE });
+export const formState = () => ({ type: FORM_STATE });

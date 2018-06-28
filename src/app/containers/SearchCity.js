@@ -19,9 +19,9 @@ class SearchCity extends React.Component {
     err: PropTypes.string.isRequired,
     cityState: PropTypes.func.isRequired,
     requestWeather: PropTypes.func.isRequired,
-  })
+  });
 
-  submitLocation = (e) => {
+  submitLocation = e => {
     e.preventDefault();
     if (this.state.inputState.length > 2) {
       const query = 'q=' + this.state.inputState;
@@ -30,8 +30,7 @@ class SearchCity extends React.Component {
         this.props.cityState();
       }
     }
-  }
-
+  };
 
   handleInputChange = e => this.setState({ inputState: e.target.value });
 
@@ -44,21 +43,20 @@ class SearchCity extends React.Component {
           <input type="text" onChange={this.handleInputChange} />
           <button>FIND</button>
         </form>
-        <p>{ err }</p>
+        <p>{err}</p>
       </div>
     );
   }
 }
-
 
 const mapStateToProps = ({ wheather }) => ({
   fullfilled: wheather.fullfilled,
   err: wheather.err,
 });
 
-const mapDispatchToProps = dispatch =>
-bindActionCreators({ requestWeather, cityState }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ requestWeather, cityState }, dispatch);
 
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchCity);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SearchCity);

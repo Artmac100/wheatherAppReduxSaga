@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  Router,
-  Route,
-  Link,
-} from 'react-router-dom';
+import { Router, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-
+import LoadSpiner from '../components/LoadSpiner';
 import history from '../history';
 import Home from '../components/Home';
 import Wheather from './Wheather';
@@ -27,17 +23,24 @@ class RoutersClass extends React.Component {
   static propTypes = () => ({
     authState: PropTypes.shape({
       authenticated: PropTypes.bool,
-    }).isRequred,
-  })
+    }).isRequired,
+    userDataPending: PropTypes.bool.isRequired
+  });
 
   render() {
+    if (this.props.userDataPending) return <LoadSpiner />
+
     return (
       <Router history={history}>
         <div>
           <div className="nav-bar">
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/wheather">Wheather</Link></li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/wheather">Wheather</Link>
+              </li>
             </ul>
             <AuthButtons />
           </div>
@@ -46,7 +49,11 @@ class RoutersClass extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <PrivateRoute path="/wheather" component={Wheather} auth={this.props.authState.authenticated} />
+            <PrivateRoute
+              path="/wheather"
+              component={Wheather}
+              auth={this.props.authState.authenticated}
+            />
           </div>
         </div>
       </Router>
@@ -54,12 +61,15 @@ class RoutersClass extends React.Component {
   }
 }
 
-
-const mapStateToProps = ({ authState }) => ({
+const mapStateToProps = ({ authState, userData: { pending } }) => ({
   authState,
+  userDataPending: pending,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ requestUserdata }, dispatch);
 
-const Routers = connect(mapStateToProps, mapDispatchToProps)(RoutersClass);
+const Routers = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RoutersClass);
 export default Routers;

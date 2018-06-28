@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-create-reducer';
-import { REQUEST_LOGIN, RESPOND_LOGIN, REJECT_LOGIN } from '../actions/loginActions';
+import { REQUEST_LOGIN, RESPOND_LOGIN, REJECT_LOGIN } from '../constants/actionTypes';
 
 const initialState = {
   pending: false,

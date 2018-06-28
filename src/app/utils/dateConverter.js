@@ -1,4 +1,4 @@
-import * as constants from '../constants';
+import * as constants from '../constants/dateTimeConstants';
 
 export const toDatestring = (intTime) => {
   const d = new Date(intTime);

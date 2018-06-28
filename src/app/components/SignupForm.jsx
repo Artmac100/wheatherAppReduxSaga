@@ -1,50 +1,34 @@
 import React from 'react';
-import { Field, reduxForm, SubmissionError } from 'redux-form';
-import { Button, Message } from 'semantic-ui-react';
+import { Field, reduxForm } from 'redux-form';
+import { Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import InputLogin from '../components/InputLogin';
 
-
-const SignupForm = ({ handleSubmit, err }) => {
-  return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <div>
-        <Field
-          name="username"
-          component={InputLogin}
-          type="text"
-          placeholder="Username"
-        />
-      </div>
-      <div>
-        <Field
-          name="email"
-          component={InputLogin}
-          type="text"
-          placeholder="Email"
-        />
-      </div>
-      <div>
-        <Field
-          name="password"
-          component={InputLogin}
-          type="password"
-          placeholder="Password"
-        />
-      </div>
-      <div>
-        <Field
-          name="confirmpassword"
-          component={InputLogin}
-          type="password"
-          placeholder="Confirm Password"
-        />
-      </div>
-      <Button fluid primary type="submit">Submit</Button>
-    </form>
-  );
-};
+const SignupForm = ({ handleSubmit, err }) => (
+  <form onSubmit={handleSubmit} className="login-form">
+    <div>
+      <Field name="username" component={InputLogin} type="text" placeholder="Username" />
+    </div>
+    <div>
+      <Field name="email" component={InputLogin} type="text" placeholder="Email" />
+    </div>
+    <div>
+      <Field name="password" component={InputLogin} type="password" placeholder="Password" />
+    </div>
+    <div>
+      <Field
+        name="confirmpassword"
+        component={InputLogin}
+        type="password"
+        placeholder="Confirm Password"
+      />
+    </div>
+    <Button fluid primary type="submit">
+        Submit
+    </Button>
+  </form>
+);
 
 SignupForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
@@ -73,4 +57,3 @@ export default reduxForm({
   form: 'submitForm',
   validate,
 })(SignupForm);
-

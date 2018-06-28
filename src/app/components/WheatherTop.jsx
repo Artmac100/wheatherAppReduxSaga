@@ -10,7 +10,7 @@ const WheatherTop = (props) => {
   return (
     <div className="wheather-contatiner">
       <div className="datetime">
-        { toDatestring(dt_txt) } { toTimeSting(dt_txt) }
+        {toDatestring(dt_txt)} {toTimeSting(dt_txt)}
       </div>
       <div className="wheather-props">
         <div className="main-wheather-prop">
@@ -21,12 +21,15 @@ const WheatherTop = (props) => {
             <div className="cloudness-text">{weather[0].description}</div>
           </div>
           <div className="temprature">
-            {main.temp.toFixed()}<span className="temprature-unit">°C</span>
+            {main.temp.toFixed()}
+            <span className="temprature-unit">°C</span>
           </div>
         </div>
         <div className="extra-wheather-props">
           <div className="wheather-prop">
-            <span className="wheather-prop-icon"><i className="icon-wind" /></span>
+            <span className="wheather-prop-icon">
+              <i className="icon-wind" />
+            </span>
             {wind.speed}
             <span className="wheather-prop-unit"> m/s</span>
           </div>

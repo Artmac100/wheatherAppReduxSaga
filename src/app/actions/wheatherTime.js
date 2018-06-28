@@ -1,3 +1,3 @@
-export const WHEATHER_TIME = 'WHEATHER_TIME';
+import { WHEATHER_TIME } from '../constants/actionTypes';
 
 export const changeWheatherTime = index => ({ type: WHEATHER_TIME, index });

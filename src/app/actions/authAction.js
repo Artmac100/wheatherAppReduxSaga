@@ -1,5 +1,7 @@
-export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
-export const LOGED_OUT = 'LOGED_OUT';
+import { IS_AUTHENTICATED, LOGGED_OUT } from '../constants/actionTypes';
 
-export const authentication = (authenticated, username) => ({ type: IS_AUTHENTICATED, payload: { authenticated, username } });
-export const logingOut = () => ({ type: LOGED_OUT });
+export const authentication = (authenticated, username) => ({
+  type: IS_AUTHENTICATED,
+  payload: { authenticated, username },
+});
+export const logingOut = () => ({ type: LOGGED_OUT });

@@ -1,16 +1,16 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { fetchWheather } from '../api/wheatherApi';
+import fetchWheather from '../api/wheatherApi';
 import { saveToStorage } from '../api/storage';
 
-import { REQUEST_WEATHER, receiveWheather, rejectWheather } from '../actions/getWheather';
-
+import { receiveWheather, rejectWheather } from '../actions/getWheather';
+import { REQUEST_WEATHER } from '../constants/actionTypes';
 
 function* getWheatherData({ location }) {
   try {
-    const data = yield call(fetchWheather, location);
-    yield put(receiveWheather(data.data));
-    yield call(saveToStorage, 'city', data.data.city.id);
+    const { data } = yield call(fetchWheather, location);
+    yield put(receiveWheather(data));
+    yield call(saveToStorage, 'city', data.city.id);
   } catch (err) {
     if (err.response) {
       yield put(rejectWheather(err.response.data.message));

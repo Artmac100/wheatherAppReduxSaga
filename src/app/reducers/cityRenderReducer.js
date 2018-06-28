@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-create-reducer';
-import { CITY_STATE, FORM_STATE } from '../actions/cityState';
+import { CITY_STATE, FORM_STATE } from '../constants/actionTypes';
 
 const initialState = false;
 const cityRenderReducer = createReducer(initialState, {

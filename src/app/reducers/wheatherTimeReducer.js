@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-create-reducer';
-import { WHEATHER_TIME } from '../actions/wheatherTime';
+import { WHEATHER_TIME } from '../constants/actionTypes';
 
 const initialState = {
   index: 0,

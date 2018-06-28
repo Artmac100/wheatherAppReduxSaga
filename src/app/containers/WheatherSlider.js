@@ -63,26 +63,29 @@ class WheatherSlider extends React.Component {
   static propTypes = () => ({
     list: PropTypes.arrayOf(PropTypes.object).isRequired,
     changeWheatherTime: PropTypes.func.isRequired,
-  })
+  });
 
   setWheatherTime = index => this.props.changeWheatherTime(index);
 
   wheather = (item, index) => (
     <div className="weather-item" key={item.dt} onClick={() => this.setWheatherTime(index)}>
-      <time className="datetime">{ toDayAndDate(item.dt_txt) }</time>
-      <time className="datetime">{ toTimeSting(item.dt_txt) }</time>
-      <div className="cloudness-icon"><i className={wheatherIcon(item.weather[0].id, item.dt_txt)} /></div>
-      <div className="temprature">{item.main.temp.toFixed()}<span className="temprature-unit">°C</span></div>
+      <time className="datetime">{toDayAndDate(item.dt_txt)}</time>
+      <time className="datetime">{toTimeSting(item.dt_txt)}</time>
+      <div className="cloudness-icon">
+        <i className={wheatherIcon(item.weather[0].id, item.dt_txt)} />
+      </div>
+      <div className="temprature">
+        {item.main.temp.toFixed()}
+        <span className="temprature-unit">°C</span>
+      </div>
       <div className="cloudness-text">{item.weather[0].description}</div>
     </div>
-  )
+  );
 
   render() {
     return (
       <div className="wheather-contatiner slider">
-        <Slider {...this.state.sliderSettings}>
-          {this.props.list.map(this.wheather)}
-        </Slider>
+        <Slider {...this.state.sliderSettings}>{this.props.list.map(this.wheather)}</Slider>
       </div>
     );
   }
@@ -90,7 +93,9 @@ class WheatherSlider extends React.Component {
 
 const mapStateToProps = () => ({});
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ changeWheatherTime }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ changeWheatherTime }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(WheatherSlider);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(WheatherSlider);

@@ -1,15 +1,14 @@
 import { call, takeLatest } from 'redux-saga/effects';
 
-import { LOGED_OUT } from '../actions/authAction';
+import { LOGGED_OUT } from '../constants/actionTypes';
 import { deleteFromStorage } from '../api/storage';
 
 function* logoutSaga() {
   yield call(deleteFromStorage, 'token');
 }
 
-
 function* logoutWatcher() {
-  yield takeLatest(LOGED_OUT, logoutSaga);
+  yield takeLatest(LOGGED_OUT, logoutSaga);
 }
 
 export default logoutWatcher;

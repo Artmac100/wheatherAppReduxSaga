@@ -13,7 +13,6 @@ import CityTitle from '../components/CityTitle';
 
 import { formState } from '../actions/cityState';
 
-
 class Wheather extends React.Component {
   componentDidMount() {
     this.props.requestWeather();
@@ -34,27 +33,25 @@ class Wheather extends React.Component {
     cityState: PropTypes.bool.isRequired,
     formState: PropTypes.func.isRequired,
     requestWeather: PropTypes.func.isRequired,
-  })
+  });
 
   render() {
     const { data, pending, cityState, wheatherTime } = this.props;
     if (pending) return <LoadSpiner />;
-    return (
-      Object.keys(data).length && !cityState ?
-        <div>
-          <CityTitle
-            location={data.city.name}
-            country={data.city.country}
-            changeCity={this.changeCity}
-          />
-          <WheatherTop wheather={data.list[wheatherTime.index]} />
-          <WheatherSlider list={data.list} />
-        </div>
-      :
-        <SearchCity />
+    return Object.keys(data).length && !cityState ? (
+      <div>
+        <CityTitle
+          location={data.city.name}
+          country={data.city.country}
+          changeCity={this.changeCity}
+        />
+        <WheatherTop wheather={data.list[wheatherTime.index]} />
+        <WheatherSlider list={data.list} />
+      </div>
+    ) : (
+      <SearchCity />
     );
   }
-
 }
 
 const mapStateToProps = ({ wheather, cityState, wheatherTime }) => ({
@@ -64,9 +61,9 @@ const mapStateToProps = ({ wheather, cityState, wheatherTime }) => ({
   wheatherTime,
 });
 
+const mapDispatchToProps = dispatch => bindActionCreators({ requestWeather, formState }, dispatch);
 
-
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ requestWeather, formState }, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Wheather);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Wheather);

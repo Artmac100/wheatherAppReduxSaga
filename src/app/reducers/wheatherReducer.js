@@ -1,5 +1,6 @@
 import { createReducer } from 'redux-create-reducer';
-import { REQUEST_WEATHER, RECEIVE_WEATHER, REJECT_WEATHER } from '../actions/getWheather';
+import { REQUEST_WEATHER, RECEIVE_WEATHER, REJECT_WEATHER } from '../constants/actionTypes';
+
 
 const initialState = {
   pending: false,

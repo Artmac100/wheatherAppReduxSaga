@@ -7,14 +7,22 @@ import ensureToken from '../middlewares/ensureToken';
 
 const userSignupControler = async (ctx) => {
   const { username, email, password } = ctx.request.body;
-  const user = new db.User({
-    username,
-    email,
-    password,
-  });
+  if (!username || !email || !password) {
+    ctx.status = 400;
+    ctx.body = {
+      authenticated: false,
+      message: 'Invalid query',
+    };
+    return;
+  }
 
   // create token
   try {
+    const user = new db.User({
+      username,
+      email,
+      password,
+    });
     const newUser = await user.save();
     ctx.status = 200;
     ctx.body = {
@@ -33,6 +41,14 @@ const userSignupControler = async (ctx) => {
 
 const userLoginControler = async (ctx) => {
   const { username, password } = ctx.request.body;
+  if (!username || !password) {
+    ctx.status = 400;
+    ctx.body = {
+      authenticated: false,
+      message: 'Invalid query',
+    };
+    return;
+  }
   try {
     const user = await db.User.findOne({ username })
     if (user.checkPassword(password)) {
@@ -61,6 +77,7 @@ const userLoginControler = async (ctx) => {
 
 const getUserData = async (ctx) => {
   const { token } = ctx.request.body;
+
   try {
     const { _id } = await jwt.verify(token, config.secret);
     const { username } = await db.User.findOne({ _id });
